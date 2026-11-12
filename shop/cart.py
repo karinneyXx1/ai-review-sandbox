@@ -21,3 +21,6 @@ class Cart:
 
     def total(self) -> float:
         return sum(item.price * item.quantity for item in self.items)
+
+    def remove(self, name: str) -> None:
+        self.items = [item for item in self.items if item.name != name]
