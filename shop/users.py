@@ -9,8 +9,8 @@ def find_user(conn: sqlite3.Connection, email: str):
 
 
 def find_users_by_name(conn: sqlite3.Connection, name: str):
-    query = f"SELECT id, email FROM users WHERE name LIKE '%{name}%'"
+    query = "SELECT id, email FROM users WHERE name LIKE ?"
     try:
-        return conn.execute(query).fetchall()
+        return conn.execute(query, (f"%{name}%",)).fetchall()
     except:
         return []
